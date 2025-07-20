@@ -5,28 +5,28 @@ Presentation:
 - Vulnerability Type: Injection
 - Affected Component: Post Query functionality (postquerypublic)
 - Software: CloudClassroom PHP Project
-- Version: Latest available on GitHub (community project)
+- Version: 1.0 (discontinued).
 - Business area: Education / e-Learning Platforms
 
 Describe the bug/issue:
 A SQL Injection vulnerability exists in the Post Query feature of the CloudClassroom PHP Project.
 The vulnerable parameter is gnamex (sent via POST), and the backend directly concatenates user input into SQL statements without proper sanitization or parameterized queries.
 
-This allows an attacker to inject arbitrary SQL commands, enabling:
+- This allows an attacker to inject arbitrary SQL commands, enabling:
 
-Extraction of sensitive information (user credentials, exam results, etc.)
+- Extraction of sensitive information (user credentials, exam results, etc.)
 
-Enumeration of databases, tables, and columns
+- Enumeration of databases, tables, and columns
 
-Potential compromise of the entire application and underlying database
+- Potential compromise of the entire application and underlying database
 
-Evidence of Vulnerability:
+# Evidence of Vulnerability:
 
 The vulnerable endpoint:
 
 http://<target>/CloudClassroom-PHP-Project-master/postquerypublic
 
-Vulnerable parameter:
+# Vulnerable parameter:
 
 POST: gnamex
 Original SQL code (from source):
@@ -54,7 +54,7 @@ Observe the response returning:
 XPATH syntax error: '~cc_db~'
 Which reveals the current database name.
 
-Impact:
+# Impact:
 
 Attackers can enumerate tables:
 
