@@ -1,12 +1,12 @@
 # CLOUD-CLASSROOMS-php-1.0 PoC - Sql Injection Erro Based
 
 Presentation:
-Security vulnerability: SQL Injection
-Vulnerability Type: Injection
-Affected Component: Post Query functionality (postquerypublic)
-Software: CloudClassroom PHP Project
-Version: Latest available on GitHub (community project)
-Business area: Education / e-Learning Platforms
+- Security vulnerability: SQL Injection
+- Vulnerability Type: Injection
+- Affected Component: Post Query functionality (postquerypublic)
+- Software: CloudClassroom PHP Project
+- Version: Latest available on GitHub (community project)
+- Business area: Education / e-Learning Platforms
 
 Describe the bug/issue:
 A SQL Injection vulnerability exists in the Post Query feature of the CloudClassroom PHP Project.
