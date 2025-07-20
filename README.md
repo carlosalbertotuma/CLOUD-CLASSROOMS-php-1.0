@@ -1,4 +1,4 @@
-# CLOUD-CLASSROOMS-php-1.0 PoC - Sql Injection
+# CLOUD-CLASSROOMS-php-1.0 PoC - Sql Injection Erro Based
 
 <img width="1388" height="684" alt="image" src="https://github.com/user-attachments/assets/1a96003b-e14f-4b81-9ab9-55cec3bda1ec" />
 
