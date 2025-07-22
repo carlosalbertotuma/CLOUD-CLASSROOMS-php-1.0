@@ -94,8 +94,7 @@ We can see that when making an SQL query, it is not shown in the query response.
 
 <img width="1318" height="705" alt="image" src="https://github.com/user-attachments/assets/e7b92457-4912-4004-9a13-20940ab0e74d" />
 
-- updatexml()
-updatexml() is a MySQL function used to update an XML document.
+- updatexml() is a MySQL function used to update an XML document.
 When the syntax is incorrect (for example, we used unexpected data), it returns an error containing the string we passed.
 
 - Payload database:
