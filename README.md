@@ -3,10 +3,14 @@
 Presentation:
 - Security vulnerability: SQL Injection
 - Vulnerability Type: Injection
+- CWE: CWE-89 / CWE-74 / CWE-707
+- CVE-2026-2058
 - Affected Component: Post Query functionality (postquerypublic)
 - Software: CloudClassroom PHP Project
 - Version: 1.0 (discontinued).
 - Business area: Education / e-Learning Platforms
+- Submitter: bl4dsc4n
+
 
 Describe the bug/issue:
 A SQL Injection vulnerability exists in the Post Query feature of the CloudClassroom PHP Project.
